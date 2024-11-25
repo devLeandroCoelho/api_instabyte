@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: backend-api # Substitua pelo nome do seu aplicativo
+    env: node
+    buildCommand: "npm install" # Ou "yarn install" se usar yarn
+    startCommand: "npm run dev"  # Ou o comando de inicialização do seu app
+    envVars:
+      - key: STRING_CONEXAO
+        value: ${STRING_CONEXAO} # Usa variáveis de ambiente
+      - key: INI_API_KEY
+        value: ${INI_API_KEY}
+    # Adicione outras configurações como tipo de instância, tamanho de disco, etc., conforme necessário. Consulte a documentação do Render.
+    healthCheckPath: /posts # Opcional, substitua pelo caminho do seu health check
+    port: 3000 # Ou a porta que seu app escuta
+
+  # - type: mongodb  # Descomente se for usar um MongoDB gerenciado pelo Render
+    # name: seu-banco-de-dados # Substitua por um nome descritivo
+    # ... outras configurações específicas do banco de dados (se usar um banco de dados gerenciado pelo Render)
+    # Observação: Se estiver usando um MongoDB externo como no seu .env, você não precisa deste serviço de banco de dados.
